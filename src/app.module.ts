@@ -7,6 +7,7 @@ import { User } from './graphql/models/User';
 import { UserSetting } from './graphql/models/UserSetting';
 import { UsersModule } from './users/users.module';
 
+console.log('NODE_ENV', process.env.NODE_ENV);
 @Module({
   imports: [
     ConfigModule.forRoot({ envFilePath: `.env` }),
@@ -20,9 +21,10 @@ import { UsersModule } from './users/users.module';
       port: +process.env.PORT,
       username: process.env.USERNAME,
       password: process.env.PASSWORD,
-      database: process.env.DB,
+      database:
+        process.env.NODE_ENV === 'TEST' ? process.env.DB_TEST : process.env.DB,
       entities: [User, UserSetting],
-      logging: true,
+      logging: false,
       synchronize: true, // true if only good for DEV
     }),
     UsersModule,

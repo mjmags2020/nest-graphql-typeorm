@@ -1,18 +1,6 @@
-import {
-  Args,
-  Int,
-  Mutation,
-  Parent,
-  Query,
-  ResolveField,
-  Resolver,
-} from '@nestjs/graphql';
+import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { User } from '../graphql/models/User';
-import { mockUsers } from 'src/_mocks_/mockUsers';
-import { UserSetting } from '../graphql/models/UserSetting';
-import { mockUserSettings } from 'src/_mocks_/mockUserSettings';
 import { CreateUserInput } from '../graphql/utils/CreateUserInput';
-import { Inject } from '@nestjs/common';
 import { UserService } from './UserService';
 import { UserSettingService } from './UserSettinService';
 
@@ -37,7 +25,7 @@ export class UserResolver {
   // @ResolveField((returns) => UserSetting, { name: 'settings', nullable: true })
   // getUserSettings(@Parent() user: User) {
   //   console.log(user);
-    
+
   //   return this.userSettingService.getUserSetingById(user.id);
   // }
   @Mutation((returns) => User)
